@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+# Parse args
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
+
+# source in common functions
+. $BIN_DIR/common.sh
+
+export_env_dir $ENV_DIR
+
+#create the cache dir if it doesn't exist
+mkdir -p $CACHE_DIR
+
+# install JDK
+echo "Installing JDK..."
+install_oracle_java $CACHE_DIR $BUILD_DIR
+echo " version $(java_version) installed"

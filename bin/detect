@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# bin/use <build-dir>
+
+echo "Oracle JDK 8" && exit 0
