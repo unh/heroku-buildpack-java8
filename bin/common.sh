@@ -24,10 +24,10 @@ install_oracle_java() {
   
   mkdir -p "${build_dir}/.jdk"
   
-  if [ ! -f "${cache_dir}/.jdk/bin/java" ] || [ "${jdk_ver}" != "$(java_version ${cache_dir}/.jdk/bin/)" ] ; then
+  if [ ! -f "${cache_dir}/.jdk/bin/java" ]; then
     echo -n " (downloading...)"
     rm -rf "${cache_dir}/.jdk" && mkdir -p "${cache_dir}/.jdk"
-    curl -s -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" "${jdk_url}" | tar xz -C "${cache_dir}/.jdk" --strip-components=1
+    curl -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" "${jdk_url}" | tar xz -C "${cache_dir}/.jdk" --strip-components=1
     rm -rf "${cache_dir}/.jdk/src.zip" "${cache_dir}/.jdk/javafx-src.zip" "${cache_dir}/.jdk/db" "${cache_dir}/.jdk/man"
   fi
   cp -r "${cache_dir}/.jdk/." "${build_dir}/.jdk"
